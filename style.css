@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  min-width: 100vw;
+  background-color: #0a3c2f;
+  overflow: hidden; /* Verberg scrollbars als de inhoud groter is dan de viewport */
+}
+.game-wrapper{
+    width: 100%;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.game { 
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2%;
+  width: 100vw;
+  height: 100vh; 
+
+  perspective: 1000px; 
+  aspect-ratio: 1; 
+}
+
+.item {
+  width: 100%;
+  height: auto;
+  position: relative;
+  transform-style: preserve-3d; 
+  transform: rotateY(0deg); 
+  transition: transform 0.6s ease; 
+  cursor: pointer;
+}
+
+.item.boxOpen {
+  transform: rotateY(180deg); 
+}
+
+.item .front, 
+.item .back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; 
+  border-radius: 10%;
+}
+
+.item .front {
+  background-color: #34b391;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item .back {
+  transform: rotateY(180deg); 
+  background-color: #fff;
+}
+
+.item img { 
+  position: absolute;
+  top: 50%;   /* Verplaats naar 50% van de hoogte van de container */
+  left: 50%;  /* Verplaats naar 50% van de breedte van de container */
+  transform: translate(-50%, -50%); /* Breng het midden van de afbeelding naar het midden van de container */
+  max-width: 80%; /* Zorg ervoor dat de afbeelding maximaal 80% van de container vult */
+  max-height: 80%; /* Zorg ervoor dat de afbeelding maximaal 80% van de container vult */
+  object-fit: cover;
+  background-color: #fff;
+  border-radius: 10%;
+}
+
+.item.boxMatch {
+  transform: rotateY(180deg);
+  cursor: default;
+}
+@media (max-width: 768px) {
+  .item img {
+    margin: 0px;
+    max-width: 95%;
+  }
+}
