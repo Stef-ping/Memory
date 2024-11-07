@@ -7,7 +7,6 @@ const fotos = [
     'img/wnf.png', 'img/wnf.png'
 ];
 
-// Map each relative image path to its corresponding website URL
 const urlMapping = {
     'img/cliniclowns.jpg': 'https://www.cliniclowns.nl/steun-ons/doneren/doneer',
     'img/hartstichting.png': 'https://www.hartstichting.nl/doneren',
@@ -22,14 +21,14 @@ function openWebsite(url) {
 }
 
 const schud_fotos = fotos.sort(() => Math.random() > 0.5 ? 1 : -1);
-let card1 = null; // The first card you can flip
-let card2 = null; // The second card you can flip
-let lockcards = false;  // Block all cards so you can't flip more
+let card1 = null; // The first card you flip
+let card2 = null; // The second card you flip
+let lockcards = false;  // Block all cards so you can't flip them more
 
 for (let i = 0; i < schud_fotos.length; i++) {
     let box = document.createElement("div");
     box.className = "item";
-
+    
     let front = document.createElement("div");
     front.className = "front";
 
@@ -70,28 +69,26 @@ for (let i = 0; i < schud_fotos.length; i++) {
             card2 = null;
             lockcards = false;
 
-            // Check if all cards are matched
+            
             if (document.querySelectorAll('.boxMatch').length === schud_fotos.length) {
-                // Assign the correct website to each matched card based on the image
+                
                 document.querySelectorAll('.boxMatch').forEach(card => {
-                    let imgSrc = card.querySelector('img').src; // Get the full image source URL
-                    console.log('Image src:', imgSrc); // Log the image source for debugging
-            
-                    // Convert image src to relative path for matching
-                    let imgSrcRelative = imgSrc.split('/').pop(); // Extract filename
-                    let url = urlMapping['img/' + imgSrcRelative]; // Map relative path
-            
-                    console.log('Mapped URL:', url); // Log the URL for debugging
-            
+                    let imgSrc = card.querySelector('img').src; 
+                    console.log('Image src:', imgSrc); 
+                    
+                    let imgSrcRelative = imgSrc.split('/').pop();
+                    let url = urlMapping['img/' + imgSrcRelative];
+                    
+                    console.log('Mapped URL:', url); 
+                    
                     if (url) {
                         card.onclick = function() {
-                            window.open(url, '_blank'); // Open the correct URL in a new window
+                            window.open(url, '_blank');
                         };
                     } else {
-                        console.error('URL not found for:', imgSrc); // Log if URL is not found
+                        console.error('URL not found for:', imgSrc);
                     }
-            
-                    // Add the 'clickable' class to each matched card
+                    
                     card.classList.add('clickable');
                 });
             }

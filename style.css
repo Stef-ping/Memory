@@ -14,6 +14,7 @@ body {
   background-color: #0a3c2f;
   overflow: hidden; /* Verberg scrollbars als de inhoud groter is dan de viewport */
 }
+
 .game-wrapper{
     width: 100%;
 }
@@ -26,9 +27,11 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
 .clickable{
   cursor: pointer !important;
 }
+
 .game { 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -36,7 +39,6 @@ body {
   gap: 2%;
   width: 100vw;
   height: 100vh; 
-
   perspective: 1000px; 
   aspect-ratio: 1; 
 }
@@ -79,11 +81,11 @@ body {
 
 .item img { 
   position: absolute;
-  top: 50%;   /* Verplaats naar 50% van de hoogte van de container */
-  left: 50%;  /* Verplaats naar 50% van de breedte van de container */
-  transform: translate(-50%, -50%); /* Breng het midden van de afbeelding naar het midden van de container */
-  max-width: 80%; /* Zorg ervoor dat de afbeelding maximaal 80% van de container vult */
-  max-height: 80%; /* Zorg ervoor dat de afbeelding maximaal 80% van de container vult */
+  top: 50%;  
+  left: 50%;  
+  transform: translate(-50%, -50%); 
+  max-width: 80%; 
+  max-height: 80%; 
   object-fit: cover;
   background-color: #fff;
   border-radius: 10%;
@@ -93,6 +95,7 @@ body {
   transform: rotateY(180deg);
   cursor: default;
 }
+
 @media (max-width: 768px) {
   .item img {
     margin: 0px;
